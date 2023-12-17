@@ -1,0 +1,52 @@
+{% extends "administracion/base/base.html" %}
+
+{% block title %}Vista lista de clientes{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex gap-3 aling-items-center">
+            <h2>Lista de clientes</h2>
+            <div>
+                <a href="{% url 'administracion:crear_cliente' %}" class="btn btn-primary">Nuevo cliente</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>N#</th>
+                                    <th>Ci</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cliente in clientes %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ cliente.ci }}</td>
+                                        <td>{{ cliente.nombre }}</td>
+                                        <td>{{ cliente.email }}</td>
+                                        <td>{{ cliente.telefono }}</td>
+                                        <td>
+                                            {% comment %} <a href="{% url 'administracion:editar_cliente' cliente.id %}" class="btn btn-warning">Editar</a>
+                                            <a href="{% url 'administracion:eliminar_cliente' cliente.id %}" class="btn btn-danger">Eliminar</a> {% endcomment %}
+                                            <a href="#" class="btn btn-warning">Editar</a>
+                                            <a href="#" class="btn btn-danger">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
