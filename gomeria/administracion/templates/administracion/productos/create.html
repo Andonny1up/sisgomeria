@@ -2,25 +2,18 @@
 {% load static %}
 {% block content %}
     <div class="container">
-        <h4 class="mb-3">Registrar Cliente</h4>
+        <h4 class="mb-3">Crear producto</h4>
         <div class="row">
             <div class="col-12 col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{% url 'administracion:crear_cliente' %}" method="post">
+                        <form action="{% url 'administracion:crear_producto' %}" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <div class="d-flex justify-content-end">
-                                <input type="submit" value="Registrar Cliente" class="btn btn-primary">
+                                <input type="submit" value="Crear producto" class="btn btn-primary">
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-none d-md-block">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="{% static 'administracion/images/user_default.png' %}" alt="img-cliente">
                     </div>
                 </div>
             </div>
@@ -44,16 +37,8 @@
             width: 100%;
             height: 100%;
         }
-        .errorlist{
-            list-style: none;
-        }
         .errorlist li{
-            margin: 0;
-            padding: 5px;
             color: red;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-            border-radius: 5px;
         }
     </style>
 {% endblock css %}

@@ -10,6 +10,9 @@ class VehiculoForm(forms.ModelForm):
     class Meta:
         model = Vehiculo
         fields = ['cliente', 'marca', 'modelo', 'placa']
+        widgets = {
+            'cliente': forms.HiddenInput(),
+        }
 
 class ProductoForm(forms.ModelForm):
     class Meta:

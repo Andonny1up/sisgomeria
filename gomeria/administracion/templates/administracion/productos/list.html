@@ -1,0 +1,42 @@
+{% extends "administracion/base/base.html" %}
+
+{% block content %}
+<h1>Productos</h1>
+<div class="row">
+    <div class="col">
+        <a href="{% url 'administracion:crear_producto' %}" class="btn btn-primary">Crear Producto</a>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.marca }}</td>
+                                <td>{{ producto.descipcion }}</td>
+                                <td>{{ producto.precio }} Bs</td>
+                                <td>
+                                    {% comment %} <a href="{% url 'administracion:producto_detalles' producto.id %}" class="btn btn-info">Detalles</a> {% endcomment %}
+                                    <a href="" class="btn btn-warning">Editar</a>
+                                    <a href="" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

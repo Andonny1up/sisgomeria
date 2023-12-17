@@ -57,3 +57,11 @@
         }
     </style>
 {% endblock css %}
+
+<h1>Crear Servicio</h1>
+
+<form action="{% url 'administracion:crear_servicio' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Crear Servicio" class="btn btn-primary">
+</form>

@@ -1,0 +1,54 @@
+{% extends "administracion/base/base.html" %}
+
+{% block title %}Vista lista de clientes{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="d-flex gap-3 aling-items-center">
+            <h2>Servicios realizados</h2>
+            <div>
+                <a href="{% url 'administracion:crear_servicio' %}" class="btn btn-primary">Registrar nuevo servicio</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body table-responsive">
+                <div class="row">
+                    <div class="col-12">
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Vehículo</th>
+                                    <th>Fecha</th>
+                                    <th>Descripción</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for servicio in servicios %}
+                                    <tr>
+                                        <td>{{ servicio.vehiculo.cliente.nombre }}</td>
+                                        <td>{{ servicio.vehiculo.placa }}</td>
+                                        <td>{{ servicio.fecha }}</td>
+                                        <td>{{ servicio.descripcion }}</td>
+                                        <td>{{ servicio.precio }}</td>
+                                        <td>{{ servicio.total }}</td>
+                                        <td>
+                                            {% if servicio.pagado %}
+                                                <a href="" class="btn btn-success">Factura</a>
+                                            {% else %}
+                                                <a href="" class="btn btn-warning">Pagar</a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

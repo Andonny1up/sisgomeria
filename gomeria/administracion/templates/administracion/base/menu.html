@@ -14,16 +14,16 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link" href="#">Inicio</a>
+            <a class="nav-link" href="{% url "administracion:home" %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cliente</a>
+            <a class="nav-link" href="{% url "administracion:clientes" %}">Cliente</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Producto</a>
+            <a class="nav-link" href="{% url "administracion:productos" %}">Producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pagos</a>
+            <a class="nav-link" href="{% url "administracion:servicios" %}">Servicios</a>
           </li>
         </ul>
       </div>

@@ -3,7 +3,7 @@
 {% block title %}Vista lista de clientes{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="d-flex gap-3 aling-items-center">
             <h2>Lista de clientes</h2>
             <div>
@@ -11,9 +11,9 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         
                         <table class="table table-hover">
                             <thead>
@@ -34,9 +34,10 @@
                                         <td>{{ cliente.nombre }}</td>
                                         <td>{{ cliente.email }}</td>
                                         <td>{{ cliente.telefono }}</td>
-                                        <td>
+                                        <td class="d-flex gap-1 justify-content-end">
                                             {% comment %} <a href="{% url 'administracion:editar_cliente' cliente.id %}" class="btn btn-warning">Editar</a>
                                             <a href="{% url 'administracion:eliminar_cliente' cliente.id %}" class="btn btn-danger">Eliminar</a> {% endcomment %}
+                                            <a href="{% url "administracion:detalle_cliente" cliente.id %}" class="btn btn-primary">Ver</a>
                                             <a href="#" class="btn btn-warning">Editar</a>
                                             <a href="#" class="btn btn-danger">Eliminar</a>
                                         </td>
