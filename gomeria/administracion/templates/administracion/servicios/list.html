@@ -37,9 +37,9 @@
                                         <td>{{ servicio.total }}</td>
                                         <td>
                                             {% if servicio.pagado %}
-                                                <a href="" class="btn btn-success">Factura</a>
+                                                <a href="{% url "administracion:servicio_factura" servicio.id %}" class="btn btn-success" target="_blank">Factura</a>
                                             {% else %}
-                                                <a href="" class="btn btn-warning">Pagar</a>
+                                                <a href="{% url "administracion:crear_pago" servicio.id %}" class="btn btn-warning" >Pagar</a>
                                             {% endif %}
                                         </td>
                                     </tr>

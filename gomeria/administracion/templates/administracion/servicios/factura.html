@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimir factura</title>
+    <style>
+        .opt-print{
+            display: flex;
+            justify-content: end;
+        }
+        .opt-print button{
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        //stilos para quitar el link de la pagina el titulo y fecha
+        @page 
+        {
+            size:  auto;   /* auto es el valor inicial */
+            margin: 0mm;  /* afecta el margen en la configuración de impresión */
+        }
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1rem;
+            min-width: 400px;
+            {% comment %} box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); {% endcomment %}
+        }
+        
+        table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        
+        table th,
+        table td {
+            padding: 12px 15px;
+            border: 1px solid rgba(0, 0, 0, 0.15);;
+        }
+        table .text-right{
+            text-align: right;
+        }
+        
+        table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        
+        table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        
+        table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+        .container{
+            width: 80%;
+            margin: 0 auto;
+        }
+        @media print{
+            .opt-print{
+                display: none;
+            }
+            .container{
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+        h1{
+            text-align: right;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="opt-print">
+        <button onclick="window.close()">Cancelar</button>
+
+        <button onclick="window.print()">Imprimir</button>
+    </div>
+
+    <div class="container">
+        <h1>Factura: AND-{{servicio.id}}</h1>
+        <h2>Fecha: {{ servicio.fecha|date:"d/m/Y" }}</h2>
+        <h2>Cliente: {{servicio.vehiculo.cliente.nombre}}</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{servicio.descripcion}}</td>
+                    <td class="text-right">1</td>
+                    <td class="text-right">{{servicio.precio}}</td>
+                    <td class="text-right">{{servicio.precio}}</td>
+                </tr>
+                {% for item in items %}
+                    <tr>
+                        <td>{{item.producto.nombre}}</td>
+                        <td class="text-right">{{item.cantidad}}</td>
+                        <td class="text-right">{{item.producto.precio}}</td>
+                        <td class="text-right">{{item.precio_total}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"> <strong>Total</strong> </td>
+                    <td class="text-right">{{servicio.total}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        document.body.addEventListener('keypress', function(e) {
+            switch (e.key) {
+                case 'Enter':
+                    window.print();
+                    break;
+                case 'Escape':
+                    window.close();
+                default:
+                    break;
+            }
+        });
+    </script>   
+</body>
+</html>

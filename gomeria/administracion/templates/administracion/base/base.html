@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Inicio{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'administracion/bootstrap/css/bootstrap.min.css' %}">
+    <link href="{% static "administracion/select2/css/select2.min.css" %}" rel="stylesheet" />
     {% block css %}{% endblock %}
 </head>
 <body>
@@ -14,7 +15,9 @@
     <div class="container mt-5 pt-5">
         {% block content %}{% endblock %}
     </div>
+    <script src="{% static 'administracion/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'administracion/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static "administracion/select2/js/select2.min.js" %}"></script>
     {% block js %}{% endblock %}
 </body>
 </html>
